@@ -9,7 +9,7 @@ ShowHelp()
 {
 	Gui, New, 2  ; Создаём GUI
 	Gui, 2:Font, s10, Verdana  ; Verdana, 10-й кегль
-	Gui, 2:Add, Link, +Wrap Center W480, Telegram Desktop Fixer v1.0`nАвтор: @Groosha, 2017г.`n`nЭтот Fixer, будучи запущенным, заставляет открывать t.me и telegram.me ссылки в нужном приложении.`nПодробнее: <a href="https://t.me/tglive/382">t.me/tglive/382</a>`n`nЧтобы сменить каталог, удалите файл конфигурации, который лежит рядом с файлом программы.
+	Gui, 2:Add, Link, +Wrap Center W480, Telegram Desktop Fixer v1.0`nАвтор: @Groosha, 2017 г.`n`nЭтот Fixer, будучи запущенным, заставляет открывать t.me и telegram.me ссылки в нужном приложении.`nПодробнее: <a href="https://t.me/tglive/382">t.me/tglive/382</a>`n`nЧтобы сменить каталог, удалите файл конфигурации, который лежит рядом с файлом программы.
 	Gui, 2:Add, Button, X220 Y150 gbtnOK, OK
 	Gui, 2:Show, W500 H200, Telegram Desktop Fixer - Справка
 	WinActivate , Telegram Desktop Fixer - Справка
@@ -132,6 +132,7 @@ else
 		backslash_path := RegExReplace(config_path, "\\", "/") ; Путь с обратными слешами
 		path_to_write := Format("""{1}\Telegram.exe"" -workdir ""{2}"" -- ""%1""", config_path, backslash_path)
 		RegWrite, REG_SZ, HKEY_CURRENT_USER, SOFTWARE\Classes\tg\shell\open\command,, %path_to_write%
+		RegWrite, REG_SZ, HKEY_CURRENT_USER, SOFTWARE\Classes\tdesktop.tg\shell\open\command,, %path_to_write%
 		Sleep, 60000 ; Пауза между повторными записями (60 сек)
 	}
 	ExitApp 0
